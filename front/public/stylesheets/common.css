@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-melu {
+    position: fixed;
+    top: 0;
+    background-color: #4b7bec;
+    height: 60px;
+    display: block;
+    width: 100%;
+    color: white;
+}
+
+.nav-container {
+    margin: 0px 5vw;
+}
+
+.container {
+    margin-top: 60px;
+}
