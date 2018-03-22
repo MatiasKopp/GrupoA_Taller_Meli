@@ -1,4 +1,4 @@
-let config      = require(__dirname + "/config.json");
+let config      = require("./config.json");
 let express     = require("express");
 let app         = express();
 let router      = express.Router();
