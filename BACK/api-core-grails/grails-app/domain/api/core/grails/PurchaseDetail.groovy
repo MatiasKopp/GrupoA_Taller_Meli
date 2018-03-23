@@ -4,7 +4,7 @@ class PurchaseDetail {
 
     Integer quantity
 
-    static belongsTo = [item: Item, purchase: Purchase]
+    static belongsTo = [purchase: Purchase, item: Item]
 
     static constraints = {
         quantity(blank: false, nullable: false)

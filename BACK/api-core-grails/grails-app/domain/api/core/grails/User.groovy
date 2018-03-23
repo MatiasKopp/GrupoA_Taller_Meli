@@ -8,7 +8,7 @@ class User {
     String password
     Integer coupons
 
-    static hasMany = [preferences: Preferences]
+    static hasMany = [preferences: Category, stats: Stats, purchases: Purchase]
 
     static constraints = {
         name(blank: false, nullable: false)
