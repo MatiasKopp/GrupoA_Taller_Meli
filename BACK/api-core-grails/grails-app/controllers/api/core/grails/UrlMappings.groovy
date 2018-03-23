@@ -13,7 +13,8 @@ class UrlMappings {
         "/categories/$id"(controller: "Category", action: "category")
         "/users/$id"(controller: "User", action: "user")
         "/users"(controller: "User", method: "POST", action:"add")
-
+        "/items"(controller: "Item", action: "items")
+        "/items/$id"(controller: "Item", action: "item")
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')

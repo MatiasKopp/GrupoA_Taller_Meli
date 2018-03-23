@@ -11,7 +11,7 @@ class CategoryController {
 
     def categories() {
 
-        def categories = categoryService.getCategoriesFromServer()
+        def categories = categoryService.getCategories()
         grails.converters.JSON.use('deep')
         render(categories as JSON)
 

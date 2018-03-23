@@ -1,10 +1,9 @@
 package api.core.grails
 
 import grails.gorm.transactions.Transactional
-import static Function.log;
 
 @Transactional
-class CategoryService {
+class ItemService {
 
     private static final String CATEGORIES_URL = "https://api.mercadolibre.com/sites/MLA/categories"
     private static final String CATEGORY_URL = "https://api.mercadolibre.com/categories/%s"
