@@ -1,7 +1,7 @@
 package api.core.grails
 
 import grails.gorm.transactions.Transactional
-import static Function.log;
+//import org.springframework.transaction.annotation.Transactional
 
 @Transactional
 class CategoryService {
@@ -22,6 +22,8 @@ class CategoryService {
             def category_json = JsonUtil.getJsonFromUrl(String.format(CATEGORY_URL, cat.id))
             cat.picture = category_json.picture
             cat.total_items_in_this_category = category_json.total_items_in_this_category
+
+            cat.save()
             categories.add(cat)
         }
 

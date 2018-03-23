@@ -6,6 +6,7 @@ class User {
     String surname
     String email
     String password
+    Integer coupons
 
     static hasMany = [preferences: Preferences]
 
@@ -14,6 +15,7 @@ class User {
         surname(blank: false, nullable: false)
         email(blank: false, nullable: false)
         password(blank: false, nullable: false)
+        coupons(blank:false, nullable: false)
     }
 /*
     static mapping = {

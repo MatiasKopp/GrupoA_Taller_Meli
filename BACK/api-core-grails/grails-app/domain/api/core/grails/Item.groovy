@@ -6,7 +6,7 @@ class Item {
     String title
     Double price
     Integer initial_quantity
-    Integer avaible_quantity
+    Integer available_quantity
     String description
     String city
     String state
@@ -24,7 +24,7 @@ class Item {
         title(blank: false, nullable: false)
         price(blank: false, nullable: false)
         initial_quantity(blank: false, nullable: false)
-        avaible_quantity(blank: false, nullable: false)
+        available_quantity(blank: false, nullable: false)
         description(blank: false, nullable: false)
         city(blank: false, nullable: false)
         state(blank: false, nullable: false)
