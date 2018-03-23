@@ -7,6 +7,7 @@ class Purchase {
     Float discount
 
     static belongsTo = [user: User]
+    static hasMany = [detail: PurchaseDetail]
 
     static constraints = {
         base_price(blank: false, nullable: false)

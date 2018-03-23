@@ -14,11 +14,11 @@ class Item {
     String latitude
     String longitude
     Date date_created
-    Date last_update
+    Date last_updated
     Integer query_count
     Integer weight
 
-
+    static hasMany = [pictures: Picture]
     static belongsTo = [category: Category]
 
     static constraints = {
@@ -33,7 +33,7 @@ class Item {
         latitude(blank: false, nullable: false)
         longitude(blank: false, nullable: false)
         date_created(blank: false, nullable: false)
-        last_update(blank: false, nullable: false)
+        last_updated(blank: false, nullable: false)
         query_count(blank: false, nullable: false)
         weight(blank: false, nullable: false)
     }
