@@ -18,6 +18,7 @@ class Item {
     Integer query_count
     Integer weight
 
+
     static belongsTo = [category: Category]
 
     static constraints = {

@@ -5,30 +5,57 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class ItemService {
 
-    private static final String CATEGORIES_URL = "https://api.mercadolibre.com/sites/MLA/categories"
-    private static final String CATEGORY_URL = "https://api.mercadolibre.com/categories/%s"
+    private static final String ITEMS_URL = "https://api.mercadolibre.com/sites/MLA/search?category=%s"
+    private static final String ITEM_URL = "https://api.mercadolibre.com/items/%s"
+    private static final String ITEM_DESCRIPTION_URL = "https://api.mercadolibre.com/items/%s/description"
 
-    ArrayList<Category> getCategories(){
+    ArrayList<Category> getItems(){
 
-        ArrayList<Category> categories = Category.getAll()
-        if(categories.size()==0){
-            categories = this.populateDataBase()
+        ArrayList<Item> items = Item.getAll()
+        if(items.size()==0){
+            items = this.populateDataBase()
         }
-        return categories
+        return items
     }
 
-    Category getCategory(String id){
+    Category getItem(String id){
 
-        Category category = Category.findById(id)
+        Item item = Item.findById(id)
 
-        return category
+        return item
     }
 
     def populateDataBase(){
 
-        def categories_json = JsonUtil.getJsonFromUrl(CATEGORIES_URL)
+        Category.getAll().each{ cat ->
+            def items_json = JsonUtil.getJsonFromUrl(String.format(ITEMS_URL, cat.id))
+            items_json.each{ i ->
+                Item item = new Item()
+                item.id = i.id
+                item.title = i.title
+                item.initial_quantity = i.initial_quantity
+                item.available_quantity = i.available_quantity
+                item.description = JsonUtil.getJsonFromUrl(String.format(ITEM_DESCRIPTION_URL, cat.id)).plain_text
+                item.city = i.seller_address.city.name
+                item.country = i.seller_address.country.name
+                item.state = i.seller_address.state.name
 
-        ArrayList<Category> categories = new ArrayList<Category>()
+                def item_json = JsonUtil.getJsonFromUrl(String.format(ITEM_URL, i.id))
+
+                item.latitude = item_json.geolocation.latitude
+                item.longitude = item_json.geolocation.longitude
+
+                item.date_created = Date.parse("yyyy.MM.dd'T'HH:mm:ss'.000z'", item_json.date_created)
+                item.last_updated = Date.parse("yyyy.MM.dd'T'HH:mm:ss'.000z'", item_json.last_updated)
+
+                item_json.pictures.each{
+                    
+                }
+
+            }
+        }
+
+        ArrayList<Item> items = new ArrayList<Item>()
 
         categories_json.each{c ->
             Category cat = new Category()
