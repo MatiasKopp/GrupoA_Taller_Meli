@@ -4,30 +4,60 @@
         <title>Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <!-- STYLESHEETS -->
-        <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="/stylesheets/common.css" />
-
         <!-- SCRIPTS -->
         <script type="text/javascript" src="../lib/jquery/jquery-3.3.1.min.js"></script>
         <script type="text/javascript" src="../lib/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- STYLESHEETS -->
+        <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="/lib/bootstrap/css/bootstrap-theme.min.css" />
+        <link rel="stylesheet" href="/stylesheets/common.css" />
+        <link rel="stylesheet" href="/stylesheets/carrousel-hamburguerMenu.css" />
     </head>
     <body>
-        <nav class="navbar-melu">
-            <div class="nav-container">
-                <h2>Hey</h2>
-                <div class="nav-right">
-                    <button class="btn btn-nav">Login</button>
-                    <button class="btn btn-nav">Registrar</button>
-                    <button class="btn btn-nav glyphicon glyphicon-shopping-cart"></button>
+        <div id="navbar"></div>
+        <div id="container-categories" class="container">
+            <div id="app"></div>
+            <!--
+            <nav class="navbar navbar-default" role="navigation">
+                <!-- El logotipo y el icono que despliega el menú se agrupan
+                     para mostrarlos mejor en los dispositivos móviles --
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Desplegar navegación</span>
+                        <span class="glyphicon glyphicon-menu-hamburger btn-sm"></span>
+                    </button>
+                    <button type="button" class="navbar-toggle">
+                        <span class="glyphicon glyphicon-log-in btn-sm"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Kwik-E-Mart</a>
                 </div>
-            </div>
-        </nav>
 
-        <div class="container">
+                <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+                     otro elemento que se pueda ocultar al minimizar la barra --
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <div class="table-responsive">
+                                <h3>Categorías: </h3>
+                                <div>
+                                    <div id="categories"></div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
 
-            <h2>Items</h2>
-            <div id="itemList"></div>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Buscar">
+                        </div>
+                        <button type="submit" class="btn btn-default">Buscar</button>
+                    </form>
+
+                </div>
+            </nav>
+        -->
         </div>
     </body>
 </html>

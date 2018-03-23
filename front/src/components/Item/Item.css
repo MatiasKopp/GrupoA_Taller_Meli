@@ -1,0 +1,82 @@
+.itemContainer {
+    margin-top: 20px;
+    background-color: white;
+    padding: 0;
+    padding-bottom: 50px;
+}
+
+.itemHeader {
+    height: 350px;
+}
+
+.itemCarrousel {
+    margin: 0;
+    width: 49%;
+    display: inline-block;
+}
+
+.itemData {
+    width: 50%;
+    padding: 0 15px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.itemSubData {
+    padding-left: 15px;
+}
+
+.quantitySelector {
+    border-radius: 5px;
+    font-weight: normal;
+}
+
+.itemButtons {
+    width: 100%;
+    text-align: center;
+}
+
+.btnBuy, .btnCart {
+    height: 50px;
+    width: 40%;
+    color: white;
+    outline: 0;
+    border: 0;
+    padding: 15px;
+}
+
+.btnBuy {
+    background: #4a69bd;
+}
+
+.btnCart {
+    background: #fa983a;
+}
+
+.btnBuy:hover {
+    background: #3d579c;
+}
+
+.btnCart:hover {
+    background: #e48a32;
+}
+
+.btnBuy:active {
+    background: #2f447d;
+}
+
+.btnCart:active {
+    background: #b56c26;
+}
+
+.itemBody {
+    padding: 0 20px;
+}
+
+.itemRelacionados {
+    margin-top: 50px;
+}
+
+.items {
+    text-align: center;
+}

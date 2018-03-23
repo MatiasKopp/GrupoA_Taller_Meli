@@ -1,5 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ItemList from './components/ItemList';
+import Navbar from './components/Navbar/Navbar'
+import App from './components/App';
 
-ReactDOM.render(<ItemList />, document.getElementById('itemList'));
+ReactDOM.render(<Navbar />, document.getElementById('navbar'));
+ReactDOM.render(<App/>, document.getElementById('app'));
+//ReactDOM.render(<Categories/>, document.getElementById('categories'));
