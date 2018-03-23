@@ -10,6 +10,7 @@ class UrlMappings {
         }
 
         "/categories"(controller: "Category", action: "categories")
+        "/categories/$id"(controller: "Category", action: "category")
 
         "/"(view:"/index")
         "500"(view:'/error')
