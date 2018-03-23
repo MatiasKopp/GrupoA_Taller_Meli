@@ -1,7 +1,7 @@
 package api.core.grails
 
 import grails.gorm.transactions.Transactional
-//import org.springframework.transaction.annotation.Transactional
+import static Function.log;
 
 @Transactional
 class CategoryService {
@@ -10,6 +10,22 @@ class CategoryService {
     private static final String CATEGORY_URL = "https://api.mercadolibre.com/categories/%s"
 
     ArrayList<Category> getCategoriesFromServer(){
+
+        ArrayList<Category> categories = Category.getAll()
+        if(categories.size()==0){
+            categories = this.populateDataBase()
+        }
+        return categories
+    }
+
+    Category getCategory(String id){
+
+        Category category = Category.findById(id)
+
+        return category
+    }
+
+    def populateDataBase(){
 
         def categories_json = JsonUtil.getJsonFromUrl(CATEGORIES_URL)
 
@@ -22,21 +38,10 @@ class CategoryService {
             def category_json = JsonUtil.getJsonFromUrl(String.format(CATEGORY_URL, cat.id))
             cat.picture = category_json.picture
             cat.total_items_in_this_category = category_json.total_items_in_this_category
-
             cat.save()
             categories.add(cat)
         }
 
         return categories
-    }
-
-    Category getCategory(String id){
-
-
-        Category category = null;
-
-
-
-        return category;
     }
 }
