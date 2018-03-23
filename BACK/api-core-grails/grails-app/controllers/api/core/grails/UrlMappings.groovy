@@ -15,6 +15,7 @@ class UrlMappings {
         "/users"(controller: "User", method: "POST", action:"add")
         "/items"(controller: "Item", action: "items")
         "/items/$id"(controller: "Item", action: "item")
+        "/users/$id/prefers"(controller:"Item", action:"preferences")
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(view:'/notFound')

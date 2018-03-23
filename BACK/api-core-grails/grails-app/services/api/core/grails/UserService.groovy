@@ -16,4 +16,8 @@ class UserService {
         user.save()
     }
 
+    List<Category> getPreferences(User user){
+        return user.preferences
+    }
+
 }
