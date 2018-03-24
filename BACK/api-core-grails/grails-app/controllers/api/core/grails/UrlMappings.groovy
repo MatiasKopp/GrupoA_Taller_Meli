@@ -11,6 +11,10 @@ class UrlMappings {
 
         "/categories"(controller: "Category", action: "categories")
         "/categories/$id"(controller: "Category", action: "category")
+
+        "/categories/$id/items"(controller: "Item", action: "itemsByCategory")
+
+
         "/users/$id"(controller: "User", action: "user")
         "/users"(controller: "User", method: "POST", action:"add")
         "/items"(controller: "Item", action: "items")
