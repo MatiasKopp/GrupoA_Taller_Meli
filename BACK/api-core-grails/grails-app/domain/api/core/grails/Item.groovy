@@ -24,8 +24,8 @@ class Item {
     static constraints = {
         title(blank: false, nullable: false)
         price(blank: false, nullable: false)
-        initial_quantity(blank: false, nullable: false)
-        available_quantity(blank: false, nullable: false)
+        initial_quantity(blank: false, nullable: false, default: 0)
+        available_quantity(blank: false, nullable: false, default: 0)
         description(blank: false, nullable: false)
         city(blank: false, nullable: false)
         state(blank: false, nullable: false)
@@ -34,8 +34,8 @@ class Item {
         longitude(blank: false, nullable: false)
         date_created(blank: false, nullable: false)
         last_updated(blank: false, nullable: false)
-        query_count(blank: false, nullable: false)
-        weight(blank: false, nullable: false)
+        query_count(blank: false, nullable: false, default: 0)
+        weight(blank: false, nullable: false, default: 0)
     }
 
     static mapping = {

@@ -13,6 +13,7 @@ class UserService {
     }
 
     void save(User user){
+        user.coupons = 0
         user.save()
     }
 
@@ -20,4 +21,7 @@ class UserService {
         return user.preferences
     }
 
+    List<Purchase> getPurchases(User user){
+        return user.purchases
+    }
 }

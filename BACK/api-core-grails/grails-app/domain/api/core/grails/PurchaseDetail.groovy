@@ -7,7 +7,7 @@ class PurchaseDetail {
     static belongsTo = [purchase: Purchase, item: Item]
 
     static constraints = {
-        quantity(blank: false, nullable: false)
+        quantity(blank: false, nullable: false, default: 0)
     }
 /*
     static mapping = {

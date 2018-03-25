@@ -15,7 +15,7 @@ class User {
         surname(blank: false, nullable: false)
         email(blank: false, nullable: false)
         password(blank: false, nullable: false)
-        coupons(blank:false, nullable: false)
+        coupons(blank:false, nullable: false, default: 0)
     }
 /*
     static mapping = {

@@ -22,13 +22,9 @@ class UserController {
     }
 
     def add(User user){
-        if (user == null) {
-            response.status = 404
-            render(new ResponseError("user_not_found: "+id) as JSON)
-        }
-
         try{
             userService.save(user)
+            render(user as JSON)
         }catch(Exception ex){
             ex.printStackTrace()
         }
@@ -50,6 +46,24 @@ class UserController {
         }
 
         render(preferences as JSON)
+    }
+
+    def purchases(int id){
+        User user = userService.getUser(id)
+
+        if (user == null) {
+            response.status = 404
+            render(new ResponseError("user_not_found: "+id) as JSON)
+        }
+
+        List<Purchase> purchases = userService.getPurchases(user)
+
+        if (purchases == null) {
+            response.status = 404
+            render(new ResponseError("user_without_purchases: "+id) as JSON)
+        }
+
+        render(purchases as JSON)
     }
 
 }
