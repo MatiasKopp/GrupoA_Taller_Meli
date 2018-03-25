@@ -24,16 +24,6 @@ class Item {
     static constraints = {
         title(blank: false, nullable: false)
         price(blank: false, nullable: false)
-<<<<<<< HEAD
-        initial_quantity(blank: false, nullable: false, default: 0)
-        available_quantity(blank: false, nullable: false, default: 0)
-        description(blank: false, nullable: false)
-        city(blank: false, nullable: false)
-        state(blank: false, nullable: false)
-        country(blank: false, nullable: false)
-        latitude(blank: false, nullable: false)
-        longitude(blank: false, nullable: false)
-=======
         initial_quantity(blank: false, nullable: false)
         available_quantity(blank: false, nullable: false)
         description(blank: true, nullable: false)
@@ -42,7 +32,6 @@ class Item {
         country(blank: true, nullable: false)
         latitude(blank: true, nullable: false)
         longitude(blank: true, nullable: false)
->>>>>>> 0405d20e8d0db76002666835db8c4b088aef1d52
         date_created(blank: false, nullable: false)
         last_updated(blank: false, nullable: false)
         query_count(blank: false, nullable: false, default: 0)
