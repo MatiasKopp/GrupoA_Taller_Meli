@@ -1,56 +1,85 @@
 import React, { Component } from 'react';
+import NotFound from '../NotFound/NotFound';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import './Item.css';
 
 class Item extends Component {
+
+    constructor() {
+        super();
+
+        this.state = {
+            cargando: true,
+            total: 0
+        }
+
+        this.calcularTotal = this.calcularTotal.bind(this);
+    }
 
     componentWillMount() {
         this.cargarItem();
     }
 
     cargarItem() {
-        let idItem = this.props.match.params.itemID;
+        let idItem  = this.props.match.params.itemID;
+        let urlItemApi = "https://api.mercadolibre.com/items/" + idItem;
+        //let urlItemApi = "http://localhost:7070/items/" + idItem;
+        let urlDescriptionApi = urlItemApi + "/description";
         //Item
-        fetch("https://api.mercadolibre.com/items/" + idItem)
+        fetch(urlItemApi)
         .then((response) => {
-            if (response.status == 404) {
-                return null;
+            if (response.status !== 404) {
+                return response.json();
             }
-            return response.json();
+            else {
+                this.setState({
+                    error: 404,
+                    cargando: false
+                });
+            }
         })
         .then((data) => {
             if (!data) {
                 return;
             }
-            let pictures = [];
-            data.pictures.forEach((picture) => {
-                pictures.push(picture.url);
-            });
 
+            let pictures = [];
+            if (data.pictures) {
+                data.pictures.forEach((picture) => {
+                    pictures.push(picture.url);
+                });
+            }
             let obj = {
                 "title": data.title,
                 "price": data.price,
                 "pictures": pictures,
                 "dateCreated": data.date_created
             }
-            this.setState({ item : obj });
+            this.setState({
+                item: obj,
+                cargando: false
+            });
             this.cargarItemsRelacionados();
         });
 
         //Descripcion
-        fetch("https://api.mercadolibre.com/items/" + idItem + "/description")
+        fetch(urlDescriptionApi)
         .then((response) => {
-            return response.json();
+            if (response.status !== 404) {
+                return response.json();
+            }
+            return null;
         })
         .then((data) => {
-            let obj = {
-                description: data.plain_text
+            if (data) {
+                this.setState({ itemDescription : data.plain_text });
             }
-            this.setState({ data : obj });
         });
     }
 
     cargarItemsRelacionados() {
-        fetch("https://api.mercadolibre.com/sites/MLA/search?category=" + this.state.item.categoriaItem)
+        let urlItemsRelacionados = "https://api.mercadolibre.com/sites/MLA/search?category=" + this.state.item.categoriaItem;
+        fetch(urlItemsRelacionados)
         .then((response) => {
             return response.json()
         })
@@ -73,35 +102,58 @@ class Item extends Component {
 
     calcularTotal(e) {
         let target   = e.target;
-        let value    = target.value;
-        let total    = this.state.total ? this.state.total + value : value;
+        let value    = target.value < 1 ? 1 : parseInt(target.value);
+        let total    = this.state.item.price * value;
 
         this.setState({total: total})
     }
 
     render() {
-        let item = this.state ? this.state.item : "";
-        let description = this.state ? this.state.data : "";
-        if (!item) {
-            return(
-                <div>
-                    <h1>404</h1>
-                    <h3>No hemos podido encontrar el articulo! :(</h3>
+        let item;
+        let description;
+        let error = this.state.error;
+        let total;
+
+        if (!this.state.cargando) {
+            if (this.state.item) {
+                item          = this.state.item;
+                description   = this.state.itemDescription;
+                total         = this.state.total === 0 ? item.price : this.state.total;
+            }
+            else {
+                error = 404;
+            }
+        }
+
+        if (this.state.cargando) {
+            return (
+                <div style={{"marginTop": 200}}>
+                    <LoadingSpinner />
                 </div>
             );
         }
+
+        if (error) {
+            return ( <NotFound /> );
+        }
+
         return (
             <div>
                 <div className="col-xs-12 itemContainer">
                     <div className="itemHeader">
                         <Carrousel imagenes={item ? this.state.item.pictures : ""}/>
                         <div className="itemData">
-                            <h3>{item ? item.title : ""}</h3>
+                            <h3 className="itemTitle">{item ? item.title : ""}</h3>
                             <div className="itemSubData">
                                 <h3>Price: ${item ? item.price : ""}</h3>
                                 <h3>Shipping: $25</h3>
-                                <h3>Quantity: <input type="number" min="1" className="quantitySelector" onChange={this.calcularTotal}/></h3>
-                                <h2>Total: {}</h2>
+                                <h3>Quantity:
+                                    <input type="number"
+                                        min="1"
+                                        className="quantitySelector"
+                                        onChange={this.calcularTotal}/>
+                                </h3>
+                                <h2>Total: ${total}</h2>
                                 <div className="itemButtons">
                                     <button className="btnBuy">Comprar</button>
                                     <button className="btnCart">Agregar a Carrito</button>
@@ -114,7 +166,7 @@ class Item extends Component {
                         <div className="container-fluid">
                             <div className="col-xs-12 col-sm-offset-2 col-sm-8">
                                 <p>
-                                    {description ? this.state.data.description : ""}
+                                    {description}
                                 </p>
                             </div>
                         </div>
@@ -123,10 +175,9 @@ class Item extends Component {
                 <div className="col-xs-12 itemRelacionados">
                     <h1>Productos relacionados: </h1>
                     <div className="items">
-                        <div className="itemBox"></div>
-                        <div className="itemBox"></div>
-                        <div className="itemBox"></div>
-                        <div className="itemBox"></div>
+                        <div className="itemRelacionado"></div>
+                        <div className="itemRelacionado"></div>
+                        <div className="itemRelacionado"></div>
                     </div>
                 </div>
             </div>

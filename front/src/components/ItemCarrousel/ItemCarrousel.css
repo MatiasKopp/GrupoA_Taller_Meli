@@ -1,0 +1,141 @@
+.carrouselContainer {
+    height: 60vh;
+    width: 70%;
+    margin-top: 75px;
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    animation: FadeInRight 0.20s ease-in;
+}
+
+.carrouselItem {
+    background-color: white;
+    height: 100%;
+    width: 95%;
+    border-radius: 7px;
+    margin-left: 2.5%;
+    box-shadow: 0px 10px 52px 0px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+
+.carrouselButton {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: 99;
+    border: 0;
+    background-color: #ecf0f1;
+    top: 40%;
+    transition: 0.15s;
+    box-shadow: 0px 3px 15px 0px rgba(0,0,0,0.4);
+}
+
+.carrouselButton:hover {
+    background-color: #dde0e2;
+    box-shadow: 0px 7px 14px 0px rgba(0,0,0,0.4);
+}
+
+.carrouselButton:active {
+    background-color: #d5d9dc;
+}
+
+.carrouselItemImage {
+    height: 60vh;
+    object-fit: contain;
+}
+
+.carrouselItemDetails {
+    height: 100%;
+    text-align: left;
+}
+
+.carrouselItemDetails h4 {
+    color: #6e91e2;
+}
+
+.carrouselItemDetails a {
+    color: #6e91e2;
+}
+
+.carrouselItemDetails h1 {
+    color: #34495e;
+    font-size: 5rem;
+}
+
+.carrouselItemDetails h1,
+    .carrouselItemDetails h4,
+    .carrouselItemDetails h3 {
+        font-weight: bold;
+}
+
+.carrouselItemFooter {
+    position: absolute;
+    text-align: right;
+    width: 100%;
+    padding: 0 30px;
+    bottom: 5%;
+}
+
+.carrouselItemLocation {
+    color: #b3bcbd;
+}
+
+.carrouselItemDescription {
+    overflow: hidden;
+    color: #636e72;
+    text-overflow: ellipsis;
+    margin: 15px;
+    max-height: 35%;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+.btnMasInfo {
+    color: white;
+    background-color: #6e91e2;
+    border: 0;
+    padding: 10px 20px;
+}
+
+.btnMasInfo:hover {
+    background-color: #5b78bd;
+}
+
+.btnMasInfo:active {
+    background-color: #4661a2;
+}
+
+@keyframes FadeInTop {
+    0% {
+        transform: translateY(-5px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes FadeInRight {
+    0% {
+        transform: translateX(5px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@@keyframes FadeOutLeft {
+    0% {
+        transform: translateX(0);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-5px);
+        opacity: 1;
+    }
+}

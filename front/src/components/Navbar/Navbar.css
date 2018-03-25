@@ -1,3 +1,15 @@
+.navbar-melu h2 {
+    color: white;
+    margin: 0;
+}
+
+.navbarTitle, .navbarTitle:hover {
+    text-decoration: none;
+    color: white;
+    font-size: 2.5rem;
+    vertical-align: middle;
+}
+
 .navbar-melu {
     position: fixed;
     top: 0;
@@ -25,20 +37,45 @@
     display: inline-block;
 }
 
-.btn-nav {
+.btn-nav, .btnSearch {
     color: #2c3e50;
     background-color: #ecf0f1;
     margin: 0 4px;
 }
 
-.btn-nav:hover {
+.btn-nav:hover, .btnSearch:hover {
     background-color: #bdc3c7;
 }
 
-.btn-nav:active {
+.btn-nav:active, .btnSearch:active {
     background-color: #95a5a6;
 }
 
-h2 {
+.searchBar {
+    display: inline-block;
     margin: 0;
+    margin-left: 20%;
+    text-align: center;
+    height: 30px;
+}
+
+.searchBar input[type="text"] {
+    height: 100%;
+    color: black;
+    width: 25vw;
+    border-top-left-radius: 5px;
+    border: 0;
+    padding: 0 10px;
+    border-bottom-left-radius: 5px;
+}
+
+.btnSearch {
+    color: black;
+    height: 100%;
+    margin: 0;
+    margin-top: -1px;
+    width: 40px;
+    border: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }

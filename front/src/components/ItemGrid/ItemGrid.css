@@ -1,0 +1,89 @@
+.itemBox {
+    width: 31%;
+    height: 300px;
+    background: white;
+    border-radius: 7px;
+    transition: 0.25s;
+    cursor: pointer;
+    margin: 7px;
+    display: inline-block;
+    -webkit-box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.1);
+    -moz-box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.1);
+    user-select: none;
+    animation: InBottomRight 0.3s ease-in;
+    animation-delay: var(--time);
+    animation-fill-mode: both;
+}
+
+.itemBox:hover {
+    -webkit-box-shadow: 0px 10px 14px 0px rgba(0,0,0,0.4);
+    -moz-box-shadow: 0px 10px 14px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 10px 14px 0px rgba(0,0,0,0.4);
+}
+
+.itemImage {
+    height: 60%;
+    overflow: hidden;
+}
+
+.itemBox img {
+    display: block;
+    width: 100%;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
+
+.itemBox a:hover, .itemBox a:focus {
+    text-decoration: none;
+}
+
+.itemDescription h4 {
+    text-align: center;
+    margin: 7px 0;
+}
+
+.itemDescription p {
+    font-size: 10px;
+}
+
+.itemPrice {
+    color: white;
+    font-weight: bold;
+    background-color: #6e91e2;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    font-size: 22px;
+    vertical-align: middle;
+    height: 10%;
+    overflow: hidden;
+}
+
+.itemDescription {
+    border-top: 1px #b2bec3 solid;
+    background-color: white;
+    height: 30%;
+    padding: 0 15px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    color: black;
+}
+
+@media (max-width: 576px) {
+    .itemBox {
+        width: 46%;
+    }
+}
+
+@keyframes InBottomRight {
+    0% {
+        transform: rotateX(10deg) rotateY(-10deg);
+        opacity: 0;
+    }
+    100% {
+        transform: rotateX(0deg) rotateY(0deg);
+        opacity: 1;
+    }
+}
