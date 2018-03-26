@@ -21,12 +21,18 @@ class UrlMappings {
         "/items/$id"(controller: "Item", action: "item")
         "/items/search"(controller: "Item", action: "searchItems")
 
+        "/stats"(controller: "Stats", action: "stats")
+        "/user/$id/stats"(controller: "Stats", action: "userStats")
+
         "/users/$id/prefers"(controller:"Item", action:"preferences")
         "/purchases"(controller: "Purchase", action: "add", method: "POST")
         "/purchases/$id"(controller: "Purchase", action: "purchase")
         "/users/$id/purchases"(controller:"User", action:"purchases")
+
+        "/login"(controller:"User", action:"login", method: "POST")
+
         "/"(view:"/index")
         "500"(view:'/error')
-        "404"(view:'/notFound')
+        "404"(controller:"Error", action:"notFound")
     }
 }
