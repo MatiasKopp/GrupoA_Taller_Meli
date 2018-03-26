@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {BrowserRouter as Router, Link} from 'react-router-dom';
 import './Navbar.css';
 
 class Navbar extends Component {
@@ -12,7 +13,7 @@ class Navbar extends Component {
                         <button className="glyphicon glyphicon-search btnSearch" type="button"></button>
                     </form>
                     <div className="nav-right hidden-xs">
-                        <button className="btn btn-nav">Login</button>
+                        <a href="/login"><button className="btn btn-nav">Login</button></a>
                         <button className="btn btn-nav glyphicon glyphicon-shopping-cart"></button>
                     </div>
                 </div>

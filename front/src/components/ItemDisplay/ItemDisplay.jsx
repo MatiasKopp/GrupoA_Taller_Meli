@@ -22,11 +22,11 @@ class ItemDisplay extends Component {
         //localStorage.setItem("categories", "MLA1,MLA4");
 
         if(localStorage.getItem("user") != null){
-            if(localStorage.getItem("categories") != null){
-                let urlItemsCategoriaApi = 'http://localhost:7070/items/q=' + localStorage.getItem("categories");
+            if(localStorage.getItem("categorias") != null){
+                let urlItemsCategoriaApi = 'http://localhost:7070/items/q=' + localStorage.getItem("categorias");
                 fetch(urlItemsCategoriaApi)
                     .then((response) => {
-                        return response.json()
+                        return response.json();
                     })
                     .then((items) => {
                         this.setState({ items: items })
