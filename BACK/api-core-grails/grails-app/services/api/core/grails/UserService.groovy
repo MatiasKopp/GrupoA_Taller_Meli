@@ -2,6 +2,8 @@ package api.core.grails
 
 import grails.gorm.transactions.Transactional
 
+import static Function.log
+
 @Transactional
 class UserService {
 
@@ -23,6 +25,21 @@ class UserService {
 
     List<Purchase> getPurchases(User user){
         return user.purchases
+    }
+
+    User validateLogin(String email, String password){
+
+        User user = User.findByEmail(email)
+
+        if(user==null){
+            return null
+        }
+
+        if(user.email==email && user.password==password){
+            return user
+        }
+
+        return null
     }
 
 }

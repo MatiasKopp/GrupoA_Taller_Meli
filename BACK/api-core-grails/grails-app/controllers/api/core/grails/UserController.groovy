@@ -3,6 +3,8 @@ package api.core.grails
 import grails.converters.JSON
 import org.grails.datastore.mapping.query.Query
 
+import static Function.log
+
 class UserController {
 
     static responseFormats = ['json']
@@ -65,5 +67,37 @@ class UserController {
 
         render(purchases as JSON)
     }
+
+    def login(){
+
+        String email = ""
+        String password = ""
+
+        try {
+
+            def user_json = request.JSON
+            email = user_json.email
+            password = user_json.password
+        }catch (Exception e){
+            response.status = 400
+            render(new ResponseError("missing_parameters") as JSON)
+        }
+
+        if(email==null || password==null || email.isEmpty() || password.isEmpty()){
+            response.status = 400
+            render(new ResponseError("missing_parameters") as JSON)
+        }
+
+        User user = this.userService.validateLogin(email, password)
+
+        if(user==null){
+            response.status = 400
+            render(new ResponseError("invaild_user") as JSON)
+        } else {
+            render(user as JSON)
+        }
+
+    }
+
 
 }

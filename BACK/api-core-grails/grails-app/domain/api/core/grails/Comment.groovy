@@ -1,6 +1,6 @@
 package api.core.grails
 
-class Comments {
+class Comment {
 
     String description
     Date date_created
