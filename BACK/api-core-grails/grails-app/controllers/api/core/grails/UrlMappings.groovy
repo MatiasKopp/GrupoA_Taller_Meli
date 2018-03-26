@@ -19,6 +19,8 @@ class UrlMappings {
         "/users"(controller: "User", action: "add", method: "POST")
         "/items"(controller: "Item", action: "items")
         "/items/$id"(controller: "Item", action: "item")
+        "/items/search"(controller: "Item", action: "searchItems")
+
         "/users/$id/prefers"(controller:"Item", action:"preferences")
         "/purchases"(controller: "Purchase", action: "add", method: "POST")
         "/purchases/$id"(controller: "Purchase", action: "purchase")

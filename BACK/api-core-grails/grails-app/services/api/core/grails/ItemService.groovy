@@ -61,6 +61,59 @@ class ItemService {
 
     }
 
+    ArrayList<Item> search(String[] categories_id, String title){
+
+        ArrayList<Category> categories = new ArrayList<Category>()
+
+        for(categoryId in categories_id){
+            Category cat = Category.findById(categoryId)
+
+            if(cat!=null){
+                categories.add(cat)
+            }
+        }
+        title = "%"+title+"%"
+        return this.findByCategoriesAndTitle(categories, title)
+
+    }
+
+    ArrayList<Item> search(String[] categories_id){
+
+        ArrayList<Category> categories = new ArrayList<Category>()
+        if(categories!=null ){
+            for(categoryId in categories_id){
+                Category cat = Category.findById(categoryId)
+
+                if(cat!=null){
+                    categories.add(cat)
+                }
+            }
+        }
+
+        return this.findByCategories(categories)
+
+    }
+
+    ArrayList<Item> search(String title){
+        title = "%"+title+"%"
+        return this.findByTitle(title)
+
+    }
+
+    ArrayList<Item> findByCategoriesAndTitle(ArrayList<Category> categories, String title){
+        return Item.findAllByCategoryInListAndTitleIlike(categories, title)
+    }
+
+    ArrayList<Item> findByCategories(ArrayList<Category> categories){
+        return Item.findAllByCategoryInList(categories)
+    }
+
+    ArrayList<Item> findByTitle(String title){
+
+        return Item.findAllByTitleLike(title)
+    }
+
+
     ArrayList<Item> populateDataBase(){
 
         ArrayList<Item> items = new ArrayList<Item>()

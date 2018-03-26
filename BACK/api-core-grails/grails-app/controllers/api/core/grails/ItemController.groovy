@@ -42,4 +42,40 @@ class ItemController {
         grails.converters.JSON.use('deep')
         render(items as JSON)
     }
+
+    def searchItems(){
+
+        String[] categories = null
+        String title=null
+
+        if(params.categories!=null){
+            try{
+                categories = params.categories.split(',')
+            }catch(Exception e){
+                render(new ResponseError("malformed_parameters") as JSON)
+            }
+        }
+
+
+        if(params.title!=null){
+            title = params.title
+        }
+
+        if(categories==null && title==null){
+            render(new ResponseError("missing_parameters") as JSON)
+        }
+
+        ArrayList<Item> items = new ArrayList<Item>()
+
+        if(categories!=null && title!=null){
+            items = itemService.search(categories, title)
+        } else if(categories!=null){
+            items = itemService.search(categories)
+        } else {
+            items = itemService.search(title)
+        }
+
+        render((items!=null ? items : []) as JSON)
+
+    }
 }
