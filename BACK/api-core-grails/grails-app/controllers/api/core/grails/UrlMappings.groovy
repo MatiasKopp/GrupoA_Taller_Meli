@@ -31,6 +31,9 @@ class UrlMappings {
 
         "/login"(controller:"User", action:"login", method: "POST")
 
+        "/comments"(controller:"Comment", action:"postComment", method: "POST")
+        "/comments"(controller:"Comment", action:"getComments", method: "GET")
+
         "/"(view:"/index")
         "500"(view:'/error')
         "404"(controller:"Error", action:"notFound")
