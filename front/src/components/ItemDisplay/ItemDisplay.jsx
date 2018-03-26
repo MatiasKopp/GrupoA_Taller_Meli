@@ -10,7 +10,7 @@ class ItemDisplay extends Component {
         super();
 
         this.state = {
-            listing: 'list'
+            listing: 'grid'
         }
 
         this.handleListing = this.handleListing.bind(this);
