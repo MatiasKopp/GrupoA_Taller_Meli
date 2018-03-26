@@ -8,7 +8,7 @@ class Purchase {
     Integer coupons
 
     static belongsTo = [user: User]
-    static hasMany = [detail: PurchaseDetail]
+    static hasMany = [details: PurchaseDetail]
 
     static constraints = {
         base_price(blank: false, nullable: false, default: 0)

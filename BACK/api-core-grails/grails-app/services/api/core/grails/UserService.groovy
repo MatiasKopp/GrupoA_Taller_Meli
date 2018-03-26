@@ -24,4 +24,5 @@ class UserService {
     List<Purchase> getPurchases(User user){
         return user.purchases
     }
+
 }

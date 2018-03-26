@@ -5,6 +5,10 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class PurchaseService {
 
+    ItemService itemService
+    UserService userService
+    StatsService statsService
+
     Purchase getPurchase(String id){
 
         Purchase purchase = Purchase.findById(id)
@@ -13,20 +17,31 @@ class PurchaseService {
     }
 
     void save(Purchase purchase){
-        addCoupons(purchase.user, purchase.coupons)
-        if(purchase.detail != null){
-            //List<PurchaseDetail> purchaseDetails = purchase.detail
-            for (PurchaseDetail purchaseDetail in purchase.detail){
-                purchaseDetail.setPurchase(purchase)
-                purchaseDetail.save()
+
+        purchase.user = userService.getUser(purchase.user.id.toString())
+
+        if(purchase.details != null){
+
+            for (detail in purchase.details){
+
+                PurchaseDetail purchaseDetail = new PurchaseDetail()
+                purchaseDetail.quantity = detail.quantity
+                purchaseDetail.item = itemService.getItem(detail.item.id)
+
+                //purchase.addToDetails(purchaseDetail)
             }
         }
-        purchase.save()
+
+        purchase.save(flush:true, failOnError: true)
+
+        addCoupons(purchase.user, purchase.coupons)
+
+        statsService.setItemBought(purchase.user)
     }
 
     void addCoupons(User user, int coupons){
         user.setCoupons(user.coupons + coupons)
-        user.save()
+        user.save(flush: true, failOnError: true)
     }
 
 }

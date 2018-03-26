@@ -26,7 +26,7 @@ class PurchaseController {
             purchaseService.save(purchase)
             render(purchase as JSON)
         }catch(Exception ex){
-            ex.printStackTrace()
+            render(new ResponseError(ex.getMessage()) as JSON)
         }
     }
 

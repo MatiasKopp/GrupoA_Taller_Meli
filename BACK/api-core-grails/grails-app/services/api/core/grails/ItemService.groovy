@@ -14,6 +14,9 @@ class ItemService {
 
     private static final int MAX_ITEM = 20
 
+    UserService userService
+    StatsService statsService
+
     ArrayList<Item> getItems(){
 
         ArrayList<Item> items = Item.getAll()
@@ -42,6 +45,20 @@ class ItemService {
             items = populateDataBaseByCategory(category)
         }
         return items
+    }
+
+    boolean setItemVisited(String userId){
+
+        User user = userService.getUser(userId)
+
+        if(user==null){
+            return false
+        }
+        log(user.id.toString())
+        statsService.setItemVisited(user)
+
+        return true
+
     }
 
     ArrayList<Item> populateDataBase(){
