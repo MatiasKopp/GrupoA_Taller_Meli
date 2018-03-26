@@ -30,6 +30,12 @@ class ItemService {
 
         Item item = Item.findById(id)
 
+        if(item!=null){
+            item.query_count++
+            item.save(flush: true, failOnError: true)
+        }
+
+
         return item
     }
 
