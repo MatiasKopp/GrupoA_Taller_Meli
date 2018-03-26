@@ -16,6 +16,7 @@ class Item {
     Date date_created
     Date last_updated
     Integer query_count
+    Integer bought_count
     Integer weight
 
     static hasMany = [pictures: Picture]
@@ -35,6 +36,7 @@ class Item {
         date_created(blank: false, nullable: false)
         last_updated(blank: false, nullable: false)
         query_count(blank: false, nullable: false, default: 0)
+        bought_count(blank: false, nullable: false, default: 0)
         weight(blank: false, nullable: false, default: 0)
     }
 
