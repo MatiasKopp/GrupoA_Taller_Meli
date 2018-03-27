@@ -16,15 +16,23 @@ class UserService {
 
     void save(User user){
         user.coupons = 0
-        user.save()
+
+        if (user.preferences != null) {
+
+            for (prefer in user.preferences) {
+                prefer = Category.findById( prefer.id )
+            }
+        }
+
+        user.save(flush:true, failOnError: true)
     }
 
     List<Category> getPreferences(User user){
-        return user.preferences
+        return user.preferences.toArray()
     }
 
     List<Purchase> getPurchases(User user){
-        return user.purchases
+        return user.purchases.toArray()
     }
 
     User validateLogin(String email, String password){
