@@ -14,7 +14,7 @@ class ItemController {
 
         def items = itemService.getItems()
 
-        grails.converters.JSON.use('deep')
+        grails.converters.JSON.properties.deep = true
 
         render(items as JSON)
     }
@@ -33,7 +33,7 @@ class ItemController {
             itemService.setItemVisited(params.user_id)
         }
 
-        grails.converters.JSON.use('deep')
+        grails.converters.JSON.properties.deep = true
         render(item as JSON)
     }
 

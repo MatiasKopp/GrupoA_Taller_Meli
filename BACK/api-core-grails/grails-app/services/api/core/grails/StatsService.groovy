@@ -11,18 +11,14 @@ class StatsService {
 
         if(stats==null){
 
-            stats = new Stats()
-            stats.user = user
-            stats.visit_items = 1
-            stats.bought_items = 0
-            stats.save(flush:true, failOnError: true)
-
-        } else{
-
-            stats.visit_items++
-            stats.save(flush:true, failOnError: true)
+            stats = this.newUserStas(user)
 
         }
+
+        stats.visit_items++
+        stats.save(flush:true, failOnError: true)
+
+
 
     }
 
@@ -32,18 +28,14 @@ class StatsService {
 
         if(stats==null){
 
-            stats = new Stats()
-            stats.user = user
-            stats.visit_items = 0
-            stats.bought_items = 1
-            stats.save(flush:true, failOnError: true)
-
-        } else{
-
-            stats.bought_items++
-            stats.save(flush:true, failOnError: true)
+            stats = this.newUserStas(user)
 
         }
+
+        stats.bought_items++
+        stats.save(flush:true, failOnError: true)
+
+
 
     }
 
@@ -64,6 +56,28 @@ class StatsService {
 
         return stats
 
+    }
+
+
+    Stats getUserStas(User user){
+        Stats stats = Stats.findByUser(user)
+
+        if(stats==null){
+
+            stats = this.newUserStas(user)
+
+        }
+
+        return stats
+    }
+
+    Stats newUserStas(User user){
+        Stats stats = new Stats()
+        stats.user = user
+        stats.visit_items = 0
+        stats.bought_items = 0
+        stats.save(flush:true, failOnError: true)
+        return stats
     }
 
 

@@ -12,7 +12,7 @@ class CategoryController {
     def categories() {
 
         def categories = categoryService.getCategories()
-        grails.converters.JSON.use('deep')
+        grails.converters.JSON.properties.deep = true
         render(categories as JSON)
 
     }
