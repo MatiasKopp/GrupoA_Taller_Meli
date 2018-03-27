@@ -13,14 +13,14 @@ class ItemService {
     private static final String ITEM_URL = "https://api.mercadolibre.com/items/%s"
     private static final String ITEM_DESCRIPTION_URL = "https://api.mercadolibre.com/items/%s/description"
 
-    private static final int MAX_ITEM = 20
+    private static final Integer MAX_ITEM = 20
 
     UserService userService
     StatsService statsService
 
     ArrayList<Item> getItems() {
 
-        ArrayList<Item> items = Item.getAll()
+        ArrayList<Item> items = Item.findAll([max: MAX_ITEM])
         if (items.size() == 0) {
             items = this.populateDataBase()
         }
@@ -108,16 +108,16 @@ class ItemService {
     }
 
     ArrayList<Item> findByCategoriesAndTitle(ArrayList<Category> categories, String title) {
-        return Item.findAllByCategoryInListAndTitleIlike(categories, title)
+        return Item.findAllByCategoryInListAndTitleIlike(categories, title, [max: MAX_ITEM])
     }
 
     ArrayList<Item> findByCategories(ArrayList<Category> categories) {
-        return Item.findAllByCategoryInList(categories)
+        return Item.findAllByCategoryInList(categories, [max: MAX_ITEM])
     }
 
     ArrayList<Item> findByTitle(String title) {
 
-        return Item.findAllByTitleLike(title)
+        return Item.findAllByTitleLike(title, [max: MAX_ITEM])
     }
 
 
