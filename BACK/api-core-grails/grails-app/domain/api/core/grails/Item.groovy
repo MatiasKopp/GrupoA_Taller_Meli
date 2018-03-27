@@ -21,6 +21,7 @@ class Item {
 
     static hasMany = [pictures: Picture]
     static belongsTo = [category: Category]
+    static fetchMode = [pictures: 'eager']
 
     static constraints = {
         title(blank: false, nullable: false)
