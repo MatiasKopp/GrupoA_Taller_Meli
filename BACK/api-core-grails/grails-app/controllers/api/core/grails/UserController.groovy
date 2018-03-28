@@ -19,20 +19,22 @@ class UserController {
             response.status = 404
             render(new ResponseError("user_not_found: "+id) as JSON)
         }
-
+        grails.converters.JSON.properties.deep = false
         render(user as JSON)
     }
 
     def add(User user){
         try{
             userService.save(user)
+            grails.converters.JSON.properties.deep = false
             render(user as JSON)
         }catch(Exception ex){
             ex.printStackTrace()
         }
     }
 
-    def preferences(int id){
+    def preferences(){
+        def id = params.id
         User user = userService.getUser(id)
 
         if (user == null) {
@@ -50,7 +52,8 @@ class UserController {
         render(preferences as JSON)
     }
 
-    def purchases(int id){
+    def purchases(){
+        def id = params.id
         User user = userService.getUser(id)
 
         if (user == null) {

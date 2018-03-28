@@ -22,9 +22,10 @@ class UrlMappings {
         "/items/search"(controller: "Item", action: "searchItems")
 
         "/stats"(controller: "Stats", action: "stats")
-        "/user/$id/stats"(controller: "Stats", action: "userStats")
+        "/stats/total"(controller: "Stats", action: "totalStats")
+        "/users/$id/stats"(controller: "Stats", action: "userStats")
 
-        "/users/$id/prefers"(controller:"Item", action:"preferences")
+        "/users/$id/prefers"(controller:"User", action:"preferences")
         "/purchases"(controller: "Purchase", action: "add", method: "POST")
         "/purchases/$id"(controller: "Purchase", action: "purchase")
         "/users/$id/purchases"(controller:"User", action:"purchases")
@@ -34,8 +35,13 @@ class UrlMappings {
         "/comments"(controller:"Comment", action:"postComment", method: "POST")
         "/comments"(controller:"Comment", action:"getComments", method: "GET")
 
+        "/carrito" (controller: "carrito", action: "get", method: "GET")
+        "/carrito" (controller: "carrito", action: "post", method: "POST")
+        "/carrito" (controller: "carrito", action: "put", method: "PUT")
+        "/carrito" (controller: "carrito", action: "delete", method: "DELETE")
+
         "/"(view:"/index")
-        "500"(view:'/error')
+        "500"(controller:"Error", action:"serverError")
         "404"(controller:"Error", action:"notFound")
     }
 }

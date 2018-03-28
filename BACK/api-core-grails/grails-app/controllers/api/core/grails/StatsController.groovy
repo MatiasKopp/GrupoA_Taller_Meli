@@ -8,8 +8,15 @@ class StatsController {
     UserService userService
 
     def stats(){
-
+        grails.converters.JSON.use('deep')
+        grails.converters.JSON.properties.deep = true
         render(statsService.getAllStats() as JSON)
+
+    }
+
+    def totalStats(){
+
+        render(statsService.getTotalStats() as JSON)
 
     }
 

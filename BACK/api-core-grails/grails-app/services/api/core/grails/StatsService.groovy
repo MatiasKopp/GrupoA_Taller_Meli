@@ -39,7 +39,7 @@ class StatsService {
 
     }
 
-    Map<String, Double> getAllStats(){
+    Map<String, Double> getTotalStats(){
         def stats = [:]
         def criteria = Stats.createCriteria()
         def stats_criterias = criteria.list{
@@ -56,6 +56,13 @@ class StatsService {
 
         return stats
 
+    }
+
+    ArrayList<Stats> getAllStats(){
+        ArrayList<Stats> stats = new ArrayList<Stats>()
+        stats = Stats.getAll()
+
+        return stats
     }
 
 
