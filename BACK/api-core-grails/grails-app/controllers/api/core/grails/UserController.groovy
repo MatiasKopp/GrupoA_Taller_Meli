@@ -83,19 +83,19 @@ class UserController {
             password = user_json.password
         }catch (Exception e){
             response.status = 400
-            render(new ResponseError("missing_parameters") as JSON)
+            render("Usuario o contraseña inválida")
         }
 
         if(email==null || password==null || email.isEmpty() || password.isEmpty()){
             response.status = 400
-            render(new ResponseError("missing_parameters") as JSON)
+            render("Usuario o contraseña inválida")
         }
 
         User user = this.userService.validateLogin(email, password)
 
         if(user==null){
             response.status = 400
-            render(new ResponseError("invaild_user") as JSON)
+            render("Usuario inválido")
         } else {
             render(user as JSON)
         }

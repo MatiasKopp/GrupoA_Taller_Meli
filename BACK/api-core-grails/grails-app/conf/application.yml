@@ -6,6 +6,8 @@ grails:
     spring:
         transactionManagement:
             proxies: false
+    cors:
+        enabled: true
     gorm:
         reactor:
             # Whether to translate GORM events into Reactor events
