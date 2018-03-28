@@ -50,4 +50,13 @@ class UserService {
         return null
     }
 
+    def Integer getCuponesUsuario(String idUsuario) {
+        User usr = getUser(idUsuario)
+        if (usr == null){
+            return 0
+        } else {
+            return usr.coupons
+        }
+    }
+
 }

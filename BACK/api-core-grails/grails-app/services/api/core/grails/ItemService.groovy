@@ -323,4 +323,20 @@ class ItemService {
         }
 
     }
+
+    /* carrito */
+
+    def Object getInfoItem(String itemId) {
+        Item it = getItem(itemId)
+    }
+
+    def ArrayList armarListaItemCarrito(List<Item> lista){
+        def listFormat = []
+        for(Item item : lista){
+            //listFormat << [idItem: item.id, cantidad: 1, precio: item.price, imagen: item.pictures, nombre: item.title]
+            listFormat << [idItem: item.id, cantidad: 1, precio: item.price, nombre: item.title]
+        }
+        return listFormat
+    }
+
 }

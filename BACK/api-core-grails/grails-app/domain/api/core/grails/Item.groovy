@@ -44,6 +44,7 @@ class Item {
     static mapping = {
         id generator: 'assigned'
         description column: 'description', sqlType: 'text'
+        pictures lazy: false
         version false
     }
 

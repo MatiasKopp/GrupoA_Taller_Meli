@@ -35,6 +35,11 @@ class UrlMappings {
         "/comments"(controller:"Comment", action:"postComment", method: "POST")
         "/comments"(controller:"Comment", action:"getComments", method: "GET")
 
+        "/carrito" (controller: "carrito", action: "get", method: "GET")
+        "/carrito" (controller: "carrito", action: "post", method: "POST")
+        "/carrito" (controller: "carrito", action: "put", method: "PUT")
+        "/carrito" (controller: "carrito", action: "delete", method: "DELETE")
+
         "/"(view:"/index")
         "500"(controller:"Error", action:"serverError")
         "404"(controller:"Error", action:"notFound")
