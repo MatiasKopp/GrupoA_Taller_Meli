@@ -22,6 +22,7 @@ class UrlMappings {
         "/items/search"(controller: "Item", action: "searchItems")
 
         "/stats"(controller: "Stats", action: "stats")
+        "/stats/total"(controller: "Stats", action: "totalStats")
         "/users/$id/stats"(controller: "Stats", action: "userStats")
 
         "/users/$id/prefers"(controller:"User", action:"preferences")
